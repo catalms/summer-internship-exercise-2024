@@ -16,14 +16,6 @@ class TeknonymyService implements ITeknonymyService {
     }
   }
 
-  /**
-   * Method to create a FamilyMember instance.
-   * 
-   * @param person person
-   * @param generation The generation level of the person
-   * @param descendent The descendent of the person
-   * @return A new FamilyMember instance
-   */
   private FamilyMember createFamilyMember(Person person, int generation, Person descendent) {
     return new FamilyMember(person, generation, descendent);
   }
@@ -95,9 +87,9 @@ class TeknonymyService implements ITeknonymyService {
           return "grandfather of " + teknonymyInfo.descendent.name();
         }
         default:
-        String teknonymyName = "";
+        StringBuilder teknonymyName = new StringBuilder();
         for (int i = 3; i <= teknonymyInfo.generation; i++) {
-          teknonymyName += "great-";
+          teknonymyName.append("great-");
         }
         if (person.sex().equals('F')) {
           return teknonymyName + "grandmother of " + teknonymyInfo.descendent.name();
